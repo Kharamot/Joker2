@@ -41,6 +41,7 @@ class ViewController: UIViewController {
         else{
             chooseJoke()
             answerLine.isHidden = true
+            buttonOutlet.setTitle("Answer", for: UIControlState.normal)
         }
     }
     
@@ -69,12 +70,27 @@ class ViewController: UIViewController {
         while noRepetes == randomJokeIndex {
             randomJokeIndex = Int(arc4random_uniform(UInt32(self.jokesArray.count)))
         }
+        
         noRepetes = randomJokeIndex
         
         firstLine.text = jokesArray[randomJokeIndex].firstLine
         secondLine.text = jokesArray[randomJokeIndex].secondLine
         thirdLine.text = jokesArray[randomJokeIndex].thirdLine
         answerLine.text = jokesArray[randomJokeIndex].answerLine
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "addJoke")
+        {
+            let addJokeViewController = segue.destination as! AddJokeViewController
+            addJokeViewController.numJokes = self.jokesArray.count + 1
+        }
+    }
+    
+    @IBAction func unwindFromAddJokeView (sender: UIStoryboardSegue){
+        let addJokeViewController = sender.source as! AddJokeViewController
+        let newJoke = addJokeViewController.newJoke
+        jokesArray.append(newJoke)
     }
 }
 
