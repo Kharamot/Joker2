@@ -8,6 +8,10 @@
 
 import Foundation
 
+class JokeArray{
+    var list: Array<Joke> = []
+}
+
 class Joke {
     var firstLine: String
     var secondLine: String

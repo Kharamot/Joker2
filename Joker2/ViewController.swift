@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     // Variable declarations.
     var jokesArray = [Joke]()
     var noRepetes: Int? = nil
+    var mJokesArray = JokeArray()
     @IBOutlet weak var firstLine: UILabel!
     @IBOutlet weak var secondLine: UILabel!
     @IBOutlet weak var thirdLine: UILabel!
@@ -48,49 +49,58 @@ class ViewController: UIViewController {
     // Initilizes jokes using the Joke class, and stores them in the array.
     func initializeJokes(){
         let joke = Joke(first: "How many programmers", second: "does it take to", third: "change a lightbulb?", answer: "Zero. That's a hardware problem.")
-        self.jokesArray.append(joke)
+        self.mJokesArray.list.append(joke)//self.jokesArray.append(joke)
         
         let joke2 = Joke(first: "What prize do", second: "you get for putting", third: "your phone on vibrate?", answer: "The No Bell Prize.")
-        self.jokesArray.append(joke2)
+        self.mJokesArray.list.append(joke2)
         
         let joke3 = Joke(first: "What do you get", second: "when you cross a", third: "stereo and a refrigerator?", answer: "Cool music.")
-        self.jokesArray.append(joke3)
+        self.mJokesArray.list.append(joke3)
         
         let joke4 = Joke(first: "Why do phones ring?", answer: "Because they can't talk.")
-        self.jokesArray.append(joke4)
+        self.mJokesArray.list.append(joke4)
         
         let joke5 = Joke(first: "Hillary Clinton", second: "Spent $1.2 Billion", answer: "And still lost! lol")
-        self.jokesArray.append(joke5)
+        self.mJokesArray.list.append(joke5)
     }
     
     // Chooses random joke from jokeArray. Will not repete a joke.
     func chooseJoke(){
-        var randomJokeIndex = Int(arc4random_uniform(UInt32(self.jokesArray.count)))
-        
-        while noRepetes == randomJokeIndex {
-            randomJokeIndex = Int(arc4random_uniform(UInt32(self.jokesArray.count)))
+        if(mJokesArray.list.count > 0)
+        {
+            
+            var randomJokeIndex = Int(arc4random_uniform(UInt32(self.mJokesArray.list.count)))
+            
+            if(mJokesArray.list.count > 1)
+            {
+                while noRepetes == randomJokeIndex {
+                    randomJokeIndex = Int(arc4random_uniform(UInt32(self.mJokesArray.list.count)))
+                }
+                
+                noRepetes = randomJokeIndex
+            }
+            
+            
+            firstLine.text = mJokesArray.list[randomJokeIndex].firstLine//jokesArray[randomJokeIndex].firstLine
+            secondLine.text = mJokesArray.list[randomJokeIndex].secondLine
+            thirdLine.text = mJokesArray.list[randomJokeIndex].thirdLine
+            answerLine.text = mJokesArray.list[randomJokeIndex].answerLine
         }
-        
-        noRepetes = randomJokeIndex
-        
-        firstLine.text = jokesArray[randomJokeIndex].firstLine
-        secondLine.text = jokesArray[randomJokeIndex].secondLine
-        thirdLine.text = jokesArray[randomJokeIndex].thirdLine
-        answerLine.text = jokesArray[randomJokeIndex].answerLine
+        else{
+            firstLine.text = "Empty"
+            secondLine.text = "Empty"
+            thirdLine.text = "Empty"
+            answerLine.text = "Empty"
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "addJoke")
+        if(segue.identifier == "viewJokes")
         {
-            let addJokeViewController = segue.destination as! AddJokeViewController
-            addJokeViewController.numJokes = self.jokesArray.count + 1
+            let viewJokeViewController = segue.destination as! TableViewController
+            viewJokeViewController.jokesArray =  self.mJokesArray
         }
     }
-    
-    @IBAction func unwindFromAddJokeView (sender: UIStoryboardSegue){
-        let addJokeViewController = sender.source as! AddJokeViewController
-        let newJoke = addJokeViewController.newJoke
-        jokesArray.append(newJoke)
-    }
+
 }
 

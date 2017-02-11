@@ -12,6 +12,7 @@ class AddJokeViewController: UIViewController, UITextFieldDelegate {
     
     var numJokes: Int = 0
     var newJoke = Joke()
+    var cancelPressed = false
     
     @IBOutlet weak var TitleLabel: UILabel!
     @IBOutlet weak var TextField1: UITextField!
@@ -19,13 +20,24 @@ class AddJokeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var TextField3: UITextField!
     @IBOutlet weak var TextFieldAnswer: UITextField!
     
-    @IBAction func CancelPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        cancelPressed = true
+        performSegue(withIdentifier: "unwindFromAddJoke", sender: nil)
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        if((TextField1.text?.isEmpty)! && (TextFieldAnswer.text?.isEmpty)!)
+        {
+            print("Must enter a joke")
+        }
+        else{
+            performSegue(withIdentifier: "unwindFromAddJoke", sender: nil)
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -44,6 +56,7 @@ class AddJokeViewController: UIViewController, UITextFieldDelegate {
         TextField2.delegate = self
         TextField3.delegate = self
         TextFieldAnswer.delegate = self
+        cancelPressed = false
         
         TitleLabel.text = "Enter New Joke #\(numJokes)"
         

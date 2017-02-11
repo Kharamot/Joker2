@@ -14,6 +14,7 @@
 		2F844B891E32F0F200758DAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F844B871E32F0F200758DAC /* LaunchScreen.storyboard */; };
 		2F844B911E32F5C400758DAC /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F844B901E32F5C400758DAC /* Joke.swift */; };
 		2FA0FC771E42D08F00B2D9FA /* AddJokeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0FC761E42D08F00B2D9FA /* AddJokeViewController.swift */; };
+		2FA3BA6C1E4EB29A0052F079 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA3BA6B1E4EB29A0052F079 /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		2F844B8A1E32F0F200758DAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F844B901E32F5C400758DAC /* Joke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Joke.swift; sourceTree = "<group>"; };
 		2FA0FC761E42D08F00B2D9FA /* AddJokeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddJokeViewController.swift; path = ../AddJokeViewController.swift; sourceTree = "<group>"; };
+		2FA3BA6B1E4EB29A0052F079 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				2F844B8A1E32F0F200758DAC /* Info.plist */,
 				2FA0FC761E42D08F00B2D9FA /* AddJokeViewController.swift */,
 				2F844B901E32F5C400758DAC /* Joke.swift */,
+				2FA3BA6B1E4EB29A0052F079 /* TableViewController.swift */,
 			);
 			path = Joker2;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 				2F844B811E32F0F200758DAC /* ViewController.swift in Sources */,
 				2F844B7F1E32F0F200758DAC /* AppDelegate.swift in Sources */,
 				2F844B911E32F5C400758DAC /* Joke.swift in Sources */,
+				2FA3BA6C1E4EB29A0052F079 /* TableViewController.swift in Sources */,
 				2FA0FC771E42D08F00B2D9FA /* AddJokeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
