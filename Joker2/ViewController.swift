@@ -23,6 +23,11 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        chooseJoke()
+        answerLine.isHidden = true
+    }
+    
     // Variable declarations.
     var jokesArray = [Joke]()
     var noRepetes: Int? = nil
